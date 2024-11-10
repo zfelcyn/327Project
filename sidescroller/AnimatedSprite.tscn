@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://br13nng2hkfrx"]
+[gd_scene load_steps=10 format=3 uid="uid://br13nng2hkfrx"]
 
 [ext_resource type="Texture2D" uid="uid://chd7ct834do3g" path="res://Art/Personal/Character/Roofus.png" id="1_ddjtl"]
+[ext_resource type="Script" path="res://animated_sprite_2d.gd" id="2_sreg5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5g3px"]
 atlas = ExtResource("1_ddjtl")
@@ -70,4 +71,4 @@ animations = [{
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_wp8eh")
 animation = &"right"
-frame_progress = 0.609712
+script = ExtResource("2_sreg5")
