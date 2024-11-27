@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="SideScroller"
-run/main_scene="res://Levels/test_level.tscn"
+run/main_scene="res://Authentication.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
 
 [display]
 
@@ -26,6 +30,10 @@ window/stretch/scale=5.77
 [dotnet]
 
 project/assembly_name="SideScroller"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-firebase/plugin.cfg")
 
 [rendering]
 
