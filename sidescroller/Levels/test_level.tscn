@@ -1,9 +1,43 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5vwkwu1cn3up"]
+[gd_scene load_steps=17 format=3 uid="uid://b5vwkwu1cn3up"]
 
 [ext_resource type="Script" path="res://Levels/texture_rect.gd" id="1_1o335"]
 [ext_resource type="Texture2D" uid="uid://xwx282m3i8oc" path="res://Art/Personal/Assets/pipe.png" id="1_yr0lq"]
 [ext_resource type="Script" path="res://Levels/ui_container.gd" id="2_3ases"]
 [ext_resource type="PackedScene" uid="uid://bf4vrv14q67d4" path="res://Characters/player.tscn" id="2_6amh2"]
+[ext_resource type="Texture2D" uid="uid://brov1fkwyojiq" path="res://Animations/Textures/Alarms.png" id="3_uywwt"]
+[ext_resource type="Texture2D" uid="uid://qx24wtq7pbmw" path="res://Animations/Textures/NuclearComputer.png" id="4_pkpa5"]
+[ext_resource type="Script" path="res://Levels/animations.gd" id="5_qoehy"]
+[ext_resource type="Texture2D" uid="uid://c6if2q37vsqqk" path="res://Animations/Textures/Door.png" id="5_vf8rr"]
+[ext_resource type="Script" path="res://Levels/camera_2d.gd" id="7_twhr1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b260e"]
+texture = ExtResource("3_uywwt")
+0:0/animation_mode = 1
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jxvf1"]
+texture = ExtResource("4_pkpa5")
+0:0/animation_frame_0/duration = 4.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 2.0
+0:0/animation_frame_3/duration = 15.0
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wsu4n"]
+texture = ExtResource("5_vf8rr")
+0:0/animation_frame_0/duration = 9.0
+0:0/animation_frame_1/duration = 30.0
+0:0/0 = 0
+0:1/animation_frame_0/duration = 9.0
+0:1/animation_frame_1/duration = 30.0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_3a7jb"]
+sources/1 = SubResource("TileSetAtlasSource_b260e")
+sources/2 = SubResource("TileSetAtlasSource_jxvf1")
+sources/4 = SubResource("TileSetAtlasSource_wsu4n")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_05rn5"]
 load_path = "res://.godot/imported/Background.png-ba049e06711e00f95994b9b3475cfb7d.ctex"
@@ -33,16 +67,25 @@ texture = SubResource("CompressedTexture2D_05rn5")
 0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:2/0 = 0
 4:2/0 = 0
+5:2/next_alternative_id = 4
 5:2/0 = 0
 3:2/0 = 0
 7:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:2/next_alternative_id = 2
 6:2/0 = 0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:2/next_alternative_id = 6
 7:2/0 = 0
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:4/0 = 0
 0:5/0 = 0
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_rriem"]
 physics_layer_0/collision_layer = 1
@@ -61,19 +104,29 @@ texture = ExtResource("1_yr0lq")
 stretch_mode = 1
 script = ExtResource("1_1o335")
 
+[node name="Animations" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray(0, 0, 252, 255, 253, 255, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 254, 255, 2, 0, 0, 0, 0, 0, 0, 0, 4, 0, 254, 255, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 255, 255, 4, 0, 0, 0, 1, 0, 0, 0)
+tile_set = SubResource("TileSet_3a7jb")
+collision_enabled = false
+script = ExtResource("5_qoehy")
+
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
 tile_set = SubResource("TileSet_rriem")
 format = 2
 layer_0/name = "Ground"
-layer_0/tile_data = PackedInt32Array(65535, 327680, 0, 65534, 327680, 0, 0, 327680, 0, 65533, 327680, 0, 65532, 327680, 0, 1, 327680, 0, 2, 327680, 0, 3, 327680, 0, 4, 65536, 0, 65531, 65536, 1, -131068, 0, 2, -65532, 0, 3, 131070, 65536, 2, 131067, 65536, 2, 131068, 65536, 2, 131069, 65536, 2, 131071, 65536, 2, 65536, 65536, 2, 65537, 65536, 2, 65538, 65536, 2, 65539, 65536, 2, 65540, 65536, 2, 131066, 65536, 2, 65530, 65536, 2, -6, 65536, 2, -65542, 65536, 2, -131078, 65536, 2, -196614, 65536, 2, -262150, 65536, 2, -327686, 65536, 2, -5, 65536, 1, -65541, 65536, 1, -131077, 65536, 1, -196613, 65536, 1, -262149, 65536, 1, -327685, 65536, 1, -65536, 327680, 1, -65535, 393216, 1, -65534, 458752, 1, -131071, 131072, 2, -65540, 0, 4, -4, 0, 5, -131072, 196608, 0, -196604, 262144, 0, -262140, 65536, 1, -327676, 65536, 1, -393212, 65536, 1, -327684, 65536, 1, -327683, 65536, 1, -327682, 65536, 1, -327681, 65536, 1, -393216, 65536, 1, -393215, 65536, 1, -393214, 65536, 1, -393213, 65536, 1, 5, 65536, 0, 6, 65536, 0, 7, 65536, 0, 8, 65536, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, -196603, 65536, 0, -196602, 65536, 0, -196601, 65536, 0, -196600, 65536, 0, -262135, 0, 0, -327671, 0, 0, -393207, 0, 0, -393206, 0, 0, -393205, 0, 0, -393204, 0, 0, -393203, 0, 0, -393202, 0, 0, -393201, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, -196612, 393216, 2)
+layer_0/tile_data = PackedInt32Array(65535, 327680, 0, 65534, 327680, 0, 0, 327680, 0, 65533, 327680, 0, 65532, 327680, 0, 1, 327680, 0, 2, 327680, 0, 3, 327680, 0, 4, 65536, 0, 65531, 65536, 1, 131070, 65536, 2, 131067, 65536, 2, 131068, 65536, 2, 131069, 65536, 2, 131071, 65536, 2, 65536, 65536, 2, 65537, 65536, 2, 65538, 65536, 2, 65539, 65536, 2, 65540, 65536, 2, 131066, 65536, 2, 65530, 65536, 2, -6, 65536, 2, -65542, 65536, 2, -131078, 65536, 2, -196614, 65536, 2, -262150, 65536, 2, -327686, 65536, 2, -5, 65536, 1, -65541, 65536, 1, -131077, 65536, 1, -262149, 65536, 1, -327685, 65536, 1, -65536, 327680, 1, -65535, 393216, 1, -65534, 458752, 1, -65540, 0, 4, -4, 0, 5, -131072, 196608, 0, -196604, 262144, 0, -262140, 65536, 1, -327676, 65536, 1, -393212, 65536, 1, -327684, 65536, 1, -327683, 65536, 1, -327682, 65536, 1, -327681, 65536, 1, -393216, 65536, 1, -393215, 65536, 1, -393214, 65536, 1, -393213, 65536, 1, 5, 65536, 0, 6, 65536, 0, 7, 65536, 0, 8, 65536, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, -196603, 65536, 0, -196602, 65536, 0, -196601, 65536, 0, -196600, 65536, 0, -262135, 0, 0, -327671, 0, 0, -393207, 0, 0, -393206, 0, 0, -393205, 0, 0, -393204, 0, 0, -393203, 0, 0, -393202, 0, 0, -393201, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, -65533, 65536, 2, -131070, 458752, 0, -131069, 65536, 2, 655354, 458752, 2, -196613, 65536, 1, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 24, 0, 0, 23, 0, 0, -131053, 0, 0, -131052, 0, 0, -131051, 0, 0, -131050, 0, 0, -458736, 0, 0, -524272, 0, 0, -589808, 0, 0, -655344, 0, 0, -720880, 0, 0, -786416, 0, 0, -262119, 0, 0, -262118, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 32, 0, 0, 33, 0, 0, 34, 0, 0, -65502, 0, 0, -131038, 0, 0, -196574, 0, 0, -262110, 0, 0, -327646, 0, 0, -327647, 0, 0, -327648, 0, 0, -327649, 0, 0, -327650, 0, 0, -524254, 0, 0, -589790, 0, 0, -786415, 0, 0, -786414, 0, 0, -786413, 0, 0, -786412, 0, 0, -786411, 0, 0, -786410, 0, 0, -786409, 0, 0, -786408, 0, 0, -786407, 0, 0, -786406, 0, 0, -786405, 0, 0, -786404, 0, 0, -786403, 0, 0, -786402, 0, 0, -786401, 0, 0, -786400, 0, 0, -786399, 0, 0, -786398, 0, 0, -720862, 0, 0, -655326, 0, 0)
 
 [node name="Area2D" type="Area2D" parent="TileMap"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("7_twhr1")
 
 [node name="Player" parent="." instance=ExtResource("2_6amh2")]
-position = Vector2(-42, -16)
+position = Vector2(-35, -15)
+collision_layer = 3
+collision_mask = 3
 
 [node name="UIContainer" type="VBoxContainer" parent="."]
 light_mask = 2

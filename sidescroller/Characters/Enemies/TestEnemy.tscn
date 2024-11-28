@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3 uid="uid://hdkackmp0k7c"]
+
+[ext_resource type="Script" path="res://Characters/Enemies/enemy.gd" id="1_e02g7"]
+[ext_resource type="Texture2D" uid="uid://ckpfmhuuxfd4k" path="res://Art/Personal/Character/Doofus.png" id="1_xsatj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsjmu"]
+atlas = ExtResource("1_xsatj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fja1"]
+atlas = ExtResource("1_xsatj")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i2s3"]
+atlas = ExtResource("1_xsatj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qa3o"]
+atlas = ExtResource("1_xsatj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_majek"]
+atlas = ExtResource("1_xsatj")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sbbj"]
+atlas = ExtResource("1_xsatj")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jkj3p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsjmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fja1")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i2s3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qa3o")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_majek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sbbj")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0bn1a"]
+radius = 71.0211
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3afep"]
+size = Vector2(16, 30)
+
+[node name="TestEnemy" type="Node2D"]
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+script = ExtResource("1_e02g7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_jkj3p")
+animation = &"Right"
+frame_progress = 0.487568
+
+[node name="detection_area" type="Area2D" parent="Enemy"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Detection" type="CollisionShape2D" parent="Enemy/detection_area"]
+shape = SubResource("CircleShape2D_0bn1a")
+
+[node name="Actual" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_3afep")

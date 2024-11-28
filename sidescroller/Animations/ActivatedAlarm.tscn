@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxrn6amp56gll"]
+
+[ext_resource type="Texture2D" uid="uid://dwxreq8g7uq4q" path="res://Animations/Textures/Activated.png" id="1_i7ngi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dncd3"]
+
+[node name="ActivatedAlarm" type="Node2D"]
+metadata/active = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture_filter = 1
+texture = ExtResource("1_i7ngi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_dncd3")
